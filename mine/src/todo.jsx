@@ -8,12 +8,9 @@ function Mine() {
     },
     {
       content: 'Get haircut',
-      isCompleted: false,
+      isCompleted: true,
     },
-    {
-      content: 'Build a todo mine in React',
-      isCompleted: false,
-    }
+    
   ]);
 
   function handleKeyDown(e, i) {
