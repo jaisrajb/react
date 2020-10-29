@@ -1,122 +1,65 @@
-import React from "react";
+import React, { useState } from 'react'
 
-export class State extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-        firstName: "",
-        lastName: "",
-        emailid:"abc@gmail.com",
-        Address:"",
-        State:"",
-        gender:"",
-        agree:"",
-    };
-  }
-  inputChangeHandler = (e) => {
-    this.setState({
-        [e.target.name] :e.target.value
-    })
-};
+function Form(){
+    const [empList, setEmpList] = useState([{Id:1,Name:'jaisraj',Age:22},{Id:2,Name:'jaisraj',Age:22},{Id:3,Name:'jaisraj',Age:22}]),
+          [emp, setEmp] = useState({Id:1,Name:'jaisraj',Age:22});
 
-render() {
-  return (
-    <div>
-        <form>
-      
-       FirstName: <input
-          type="text"
-          name="firstName"
-          value={this.state.firstName}
-          onChange={(e) => {
-            this.inputChangeHandler(e);
-          }}
-        />
 
-       LastName: <input
-          type="text"
-          name="lastName"
-          value={this.state.lastName}
-          onChange={(e) => {
-            this.inputChangeHandler(e);
-          }}
-        />
-      
-      E-mail: <input
-          type="text"
-          name="emailid"
-          value={this.state.emailid}
-          onChange={(e) => {
-            this.inputChangeHandler(e);
-          }}
-        />
+    return(
+        <>
+            <button>Add </button>
+            <table>
+                <thead>
+                    <tr>
+                        {
+                            Object.keys(emp).map(i=>{
+                                    return(
+                                        <th>
+                                            {i}
+                                        </th>
+                                    )
+                                }
+                            )
+                        }
+                        <th>
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {empList.map(i=>{
+                        return(
+                            <tr>
+                                <td>{i.Id}</td>
+                                <td>{i.Name}</td>
+                                <td>{i.Age}</td>
+                                <td><BtnBlock id={i.Id}/></td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
+            </table>
+        </>
+    )
 
-        Address: <input
-          type="text"
-          name="Address"
-          value={this.state.Address}
-          onChange={(e) => {
-            this.inputChangeHandler(e);
-          }}
-        />
-
-            State : <select
-                    name = "state"
-                    onChange = { e => {
-                        this.inputChangeHandler(e);
-                    }}
-                    >
-                        <option
-                            value = "Ghaziabad"
-                        >Ghaziabad</option>
-
-                        <option
-                            value = "Delhi"
-                        >Delhi</option>
-
-                        <option
-                            value = "Noida"
-                        >Noida</option>
-
-                    </select>
-     
-      
-        <div>
-        Gender : <input
-                    type = "radio"
-                    name = "gender"
-                    value = "Male"
-                    onChange = { e => {
-                        this.inputChangeHandler(e);
-                    }}
-                />Male
-
-                <input
-                    type = "radio"
-                    name = "gender"
-                    value = "FeMale"
-                    onChange = { e => {
-                        this.inputChangeHandler(e);
-                    }}
-                />FeMale
-        </div>
-        <div>
-                <input
-                    type = "checkbox"
-                    name = "terms"
-                    value = {true}
-                    onChange = { e => {
-                        this.inputChangeHandler(e);
-                    }}
-                />Terms and Conditions Applied
-        </div>      
-        
-          <button onClick={()=>{alert(JSON.stringify(this.state))}} >
-              Submit
-          </button>
-      </form>
-    </div>
-  );
+    
 }
-}
+export default Form;
 
+function BtnBlock({Id}){
+    return(
+        <>
+            <button>
+                View
+            </button>
+
+            <button>
+                Edit
+            </button>
+
+            <button>
+                Delete
+            </button>
+        </>
+    )
+}
