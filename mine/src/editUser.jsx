@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
 
-function AddBtn({add, id}){
+function EditBtn({add, id}){
     const [name, setName] = useState(""),
-          [age, setAge] = useState(0);
+        [age, setAge] = useState(0);
 
+let arr = JSON.parse(localStorage.getItem('empList'));
 
-
+function fUser(id){
+    return(
+        arr.filter(id=>id == emp.id)
+    )}
          
 return(
     <>
@@ -23,22 +27,22 @@ return(
     name='Age'
     value={age}
     onChange={(e)=>{
-        setAge(e.target.value)
+        setAge(fUser(id,e.target.value))
     }}
     />
     
 
     <button 
         onClick = {() => {
-            const obj = {id:id, name:name, age:age};
+            const obj = {id = emp.id, name, age};
             add(obj);
         }}
     >
-        Submit
+        Update
     </button>
     </>
 )
 
 
         }
-export default AddBtn;
+export default EditBtn;
